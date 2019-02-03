@@ -1,3 +1,4 @@
+<?php require_once 'php/config/conexao.php'; ?>
 <!DOCTYPE html>
 <html lang="pt-br">
 	<head>
