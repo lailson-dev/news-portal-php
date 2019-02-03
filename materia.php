@@ -1,19 +1,28 @@
-<?php include_once 'pages/header.php'; ?>
+<?php
+include_once 'pages/header.php';
+
+if(isset($_GET['title']) && !empty($_GET['title']) && isset($_GET['id']) && !empty($_GET['id'])) {
+	$title_post = filter_var($_GET['title'], FILTER_SANITIZE_STRING);
+	$id_post	= filter_var($_GET['id'], FILTER_SANITIZE_NUMBER_INT);
+
+	$list = $db->prepare("SELECT * FROM post WHERE id_post = :id");
+	$list->bindParam(':id', $id_post, PDO::PARAM_INT);
+	$list->execute();
+
+	$result = $list->fetch();
+}
+?>
 
 <!-- Posts Page - Noticies -->
 <section class="container p-0 mb-5">
-	<h1 class=" display-3 font-weight-bold mb-5">Inscrições abertas para curso técnico gratuito em agronegócio</h1>
-	<h2>Policial Militar é baleado durante tentativa de assalto na Avenida Centenário, em Salvador</h2>
+	<h1 class=" display-3 font-weight-bold mb-5"><?= $result->title_post ?></h1>
+	<h2><?= $result->subtitle_post ?></h2>
 
-	<small class="d-block my-3"><em>03/02/2018 14h32</em> - <strong>Lailson Conceição</strong></small>
+	<small class="d-block my-3"><em><?= date('d/m/Y h:i', strtotime($result->date_post)) ?></em> - <strong><?= $result->author_post ?></strong></small>
 	<hr class="mb-4 mt-0">
 	<div class="row d-flex justify-content-center">				
 		<div class="col-sm-8 text-center">
-			<p class="lead">Um policial militar foi baleado durante uma tentativa de assalto, na Avenida Centenário, na madrugada deste domingo (3). Conforme informações da Polícia Militar (PM), quatro suspeitos, que fugiram em um carro, são procurados.<br><br>
-
-			De acordo com a PM, a vítima passava de carro, por volta das 1h30, quando foi atingido por disparos de arma de fogo.<br><br>
-
-			Segundo o órgão, o policial foi socorrido por uma equipe da 11ª Companhia Independente da Polícia Militar (CIPM/Barra) e levado para o Hospital Português, onde passou por uma cirurgia. O quadro de saúde dele é estável.</p>
+			<p class="lead"><?= $result->content_post ?></p>
 		</div>
 	</div>
 </section>
