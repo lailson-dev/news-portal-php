@@ -8,3 +8,11 @@
 	line-height: 1;
 	border-bottom: 1px solid #e5e5e5;
 }
+
+.bg-gray {
+	padding: 2.5rem 0;
+	color: #999;
+	text-align: center;
+	background-color: #f9f9f9;
+	border-top: .05rem solid #e5e5e5;
+}
