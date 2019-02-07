@@ -10,9 +10,9 @@
 					<div class="col-sm-4">
 						<h5>Menu</h5>
 						<div class="list-unstyled btn-group-vertical btn-block btn-group-lg">
-							<a class="btn btn-link" href="#">Mundo</a>
-							<a class="btn btn-link" href="#">Política</a>
-							<a class="btn btn-link" href="#">Emprego</a>
+							<a class="btn btn-link" href="categoria?category=world">Mundo</a>
+							<a class="btn btn-link" href="categoria?category=footbal">Futebol</a>
+							<a class="btn btn-link" href="categoria?category=job">Emprego</a>
 						</div>
 					</div>
 
