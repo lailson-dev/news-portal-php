@@ -1,4 +1,4 @@
-<?php require_once 'php/config/conexao.php'; ?>
+<?php require_once 'php/config/conexao.php'; include_once 'php/helpers/functions.php'; ?>
 <!DOCTYPE html>
 <html lang="pt-br">
 	<head>
