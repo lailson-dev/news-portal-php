@@ -12,13 +12,8 @@ if(isset($_POST)) {
 
 	$filters = array('jpeg', 'jpg');
 	$extFile = pathinfo($photo['name'], PATHINFO_EXTENSION);
-	$string = strtr(utf8_decode(strtolower($title)),
-        utf8_decode('ŠŒŽšœžŸ¥µÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜÝßàáâãäåæçèéêëìíîïðñòóôõöøùúûüýÿ'),
-                 'SOZsozYYuAAAAAAACEEEEIIIIDNOOOOOOUUUUYsaaaaaaaceeeeiiiionoooooouuuuyy');
- 
-	$string = str_replace(',', '', $string);
-	$string = str_replace('.', '', $string);
-	$string = str_replace(' ', '-', $string);
+
+	include_once '../../../php/helpers/functions.php';
 
 	if(!in_array($extFile, $filters)) {
 		header('Location: ../../pages/cadastro-postagem?e=true');
@@ -26,7 +21,8 @@ if(isset($_POST)) {
 
 	$folder   = "../../../assets/img/";
 	$tempName = $photo['tmp_name'];
-	$newName  = "{$string}.{$extFile}";
+	$c = clearStr(strtolower($title));
+	$newName  = "{$c}.{$extFile}";
 
 	if(move_uploaded_file($tempName, $folder.$newName)) {
 		require_once '../db.php';
